@@ -37,7 +37,7 @@ class WeatherApp extends Component {
                         ? <WeatherGraph
                             lat={this.props.coords.latitude}
                             lon={this.props.coords.longitude}
-                            addr={this.state.addr}/>
+                            addr={"Current Location"}/>
                         : <div>Please search for a location for Weather Data</div>
                 }
             </Container>

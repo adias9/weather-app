@@ -46,6 +46,8 @@ class WeatherGraph extends Component {
                     temps: tempObj,
                     hums: humObj,
                     press: presObj
+                }, () => {
+                    this.forceUpdate();
                 });
             })
             .catch(error => console.error('Error', error));
@@ -53,11 +55,9 @@ class WeatherGraph extends Component {
     }
 
     render() {
-        console.log(this.props.lat);
-        console.log(this.props.lon);
         return (
             <div>
-                Weather Graphs
+                Weather Graphs for {this.props.addr}
                 <LineChart data={this.state.temps} min={null} max={null} ytitle="Temperature (F)" label="F" />
                 <LineChart data={this.state.hums} min={null} max={null} ytitle="Humidity (%)" label="%" />
                 <LineChart data={this.state.press} min={null} max={null} ytitle="Pressure (hPA)" label="hPA" />
@@ -68,7 +68,8 @@ class WeatherGraph extends Component {
 
 WeatherGraph.propTypes = {
     lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired
+    lon: PropTypes.number.isRequired,
+    addr: PropTypes.string
 }
 
 export default WeatherGraph;
