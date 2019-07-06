@@ -62,7 +62,7 @@ class WeatherGraph extends Component {
 
         return (
             <div>
-                Weather Graphs for {this.props.addr}
+                Weather Graphs for <b>{this.props.addr}</b>
                 <LineChart data={data} min={null} max={null} ytitle="Temperature (F)" label="F" />
                 <LineChart data={this.state.hums} min={null} max={null} ytitle="Humidity (%)" label="%" />
                 <LineChart data={this.state.press} min={null} max={null} ytitle="Pressure (hPA)" label="hPA" />
