@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDependentScript from "react-dependent-script";
 import axios from 'axios';
 
-import { LineChart } from 'react-chartkick';
-import 'chart.js';
+import  Chartkick, { LineChart } from 'react-chartkick';
+import Highcharts from 'highcharts';
+
+Chartkick.use(Highcharts);
 
 class WeatherGraph extends Component {
     constructor(props) {
@@ -13,11 +16,25 @@ class WeatherGraph extends Component {
             hums: {},
             press: {}
         }
-        this.fetchWeatherData(props.lat, props.lon);
     }
 
-    fetchWeatherData(lat, lon) {
+    componentDidMount() {
+        this.fetchWeatherData();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.lat !== this.props.lat) {
+            this.fetchWeatherData();
+        }
+   }
+
+    fetchWeatherData() {
+        const lat = this.props.lat,
+        lon = this.props.lon;
+
+        console.log("hey");
         if (lat !== "" && lon !== "") {
+            console.log("huh");
             axios.get(process.env.REACT_APP_WEATHER_API_URL, {
                 params: {
                     lat: lat,
@@ -49,8 +66,6 @@ class WeatherGraph extends Component {
                     temps: tempObj,
                     hums: humObj,
                     press: presObj
-                }, () => {
-                    this.forceUpdate();
                 });
             })
             .catch(error => console.error('Error', error));
@@ -58,12 +73,10 @@ class WeatherGraph extends Component {
     }
 
     render() {
-        const data = JSON.parse(JSON.stringify(this.state.temps))
-
         return (
             <div>
                 Weather Graphs for <b>{this.props.addr}</b>
-                <LineChart data={data} min={null} max={null} ytitle="Temperature (F)" label="F" />
+                <LineChart data={this.state.temps} min={null} max={null} ytitle="Temperature (F)" label="F" />
                 <LineChart data={this.state.hums} min={null} max={null} ytitle="Humidity (%)" label="%" />
                 <LineChart data={this.state.press} min={null} max={null} ytitle="Pressure (hPA)" label="hPA" />
             </div>

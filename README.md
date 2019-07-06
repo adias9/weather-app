@@ -1,4 +1,4 @@
-The following application completes the required functionality with one main bug. The graph library I use has some sort of cacheing that will not all the graphs to refresh even though I'm passing new data each time.  I have tried to fix it assuming it may have had to do something with not deep cloning but it would take more time to figure out/debug. For proof I do log to the console the values as the state changes, but the graph doesn't respond to the state updating.
+You may see in my first version that I had a bug and realized it had to do with lifecycle updating and the library. I have fixed the bug even though it is after the deadline, because I hate turning in something I'm not satisfied with.  I fixed it and I am much more satisfied with the final product. I will have no more updates.
 
 Please also add the env file with the keys I have supplied to be able to have the app function.
 
