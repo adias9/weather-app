@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styling/index.scss';
+import App from './core/WeatherApp.js';
 import * as serviceWorker from './serviceWorker';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+require('dotenv').config();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
