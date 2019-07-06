@@ -42,6 +42,9 @@ class WeatherGraph extends Component {
                     return tempObj[time] = fTemp;
                 })
 
+                console.log(tempObj);
+                console.log(humObj);
+                console.log(presObj);
                 this.setState({
                     temps: tempObj,
                     hums: humObj,
@@ -55,10 +58,12 @@ class WeatherGraph extends Component {
     }
 
     render() {
+        const data = JSON.parse(JSON.stringify(this.state.temps))
+
         return (
             <div>
                 Weather Graphs for {this.props.addr}
-                <LineChart data={this.state.temps} min={null} max={null} ytitle="Temperature (F)" label="F" />
+                <LineChart data={data} min={null} max={null} ytitle="Temperature (F)" label="F" />
                 <LineChart data={this.state.hums} min={null} max={null} ytitle="Humidity (%)" label="%" />
                 <LineChart data={this.state.press} min={null} max={null} ytitle="Pressure (hPA)" label="hPA" />
             </div>
