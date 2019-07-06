@@ -26,6 +26,7 @@ class WeatherApp extends Component {
     render() {
         return (
             <Container className="weather-app-container">
+                <h1>Weather App</h1>
                 <SearchBar submitHandler={(lat,lon,addr) => this.searchHandler(lat,lon,addr)} />
                 <br/>
                 { (this.state.lat !== "" && this.state.lon !== "")
